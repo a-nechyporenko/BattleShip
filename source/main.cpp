@@ -4,12 +4,13 @@
 
 int main()
 {
-	BattleShips bs;
+
+	/*BattleShips bs;
 
 	while (!bs.gameOver()) {
 		bs.gameUpdate();
 	}
-	return 0;
+	return 0;*/
 }
 
 //complete in soon...

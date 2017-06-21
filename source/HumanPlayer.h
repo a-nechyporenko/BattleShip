@@ -1,12 +1,18 @@
 #pragma once
+#ifndef _HUMANPLAYER_H
+#define _HUMANPLAYER_H
 #include"Player.h"
 
 class HumanPlayer :public Player {
 public:
-	HumanPlayer();
-	void map_init(); //Placing in the map array information about the player's ships
+					
 	void show();
-	int input(int&, int&);//User input
-	bool turn(int character, int digit); // Player progress
+	int input(int&, int&);					//User input
+	bool turn(int character, int digit);	// Player progress
+	
+private:
+	HumanPlayer();
 	~HumanPlayer();
 };
+
+#endif

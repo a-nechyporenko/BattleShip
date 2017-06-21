@@ -2,8 +2,8 @@
 #include"Player.h"
 #include<iostream>
 
-
 HumanPlayer::HumanPlayer(){
+	Player::ships_init();
 }
 
 int input(int& character, int& digit)
@@ -28,5 +28,6 @@ int input(int& character, int& digit)
 	if (digit == -1) { massage = 1; return massage; }
 	return massage;
 }
+
 HumanPlayer::~HumanPlayer(){
 }

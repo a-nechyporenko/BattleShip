@@ -90,7 +90,7 @@ void Player::set(int deck) {
 	}
 }
 
-int Player::place_ship(int x, int y, direction dir, int deck)
+bool Player::place_ship(int x, int y, direction dir, int deck)
 {
 	bool e = 0;
 	switch (dir)

@@ -2,9 +2,6 @@
 #include<thread>
 
 
-BattleShips::BattleShips()
-{
-}
 void BattleShips::start(){
 	if (m_State != machinstate::start) {
 		m_State = machinstate::start;
@@ -47,8 +44,4 @@ void BattleShips::controlState() {
 
 		}
 	}
-}
-
-BattleShips::~BattleShips()
-{
 }

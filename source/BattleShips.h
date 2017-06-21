@@ -1,4 +1,9 @@
 #pragma once
+#ifndef _BATTLESHIPS_H
+#define _BATTLESHIPS_H
+#include"HumanPlayer.h"
+#include"ComputerPlayer.h"
+#include"Board.h"
 #include"Enum.h"
 class BattleShips {
 public:
@@ -15,3 +20,4 @@ private:
 	machinstate m_State;
 	StepState m_StepState;
 };
+#endif
