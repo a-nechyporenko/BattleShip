@@ -3,7 +3,7 @@
 #define _BATTLESHIPS_H
 #include"HumanPlayer.h"
 #include"ComputerPlayer.h"
-#include"Board.h"
+#include"Fild.h"
 #include"Enum.h"
 class BattleShips {
 public:
