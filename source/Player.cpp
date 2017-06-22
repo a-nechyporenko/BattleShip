@@ -1,5 +1,5 @@
 #include "Player.h"
-#include <iostream>
+#include"Enum.h"
 
 
 Player::Player(){
