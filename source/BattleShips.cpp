@@ -31,54 +31,58 @@ BattleShips::BattleShips()
 bool BattleShips::turnHuman(int character, int digit)
 {
 	setlocale(LC_CTYPE, "Russian");
-	bool e = 0;
+	
+	//bool e = false;
 	if ((human.hits[digit][character] == 1) || (human.hits[digit][character] == 2))
 	{
 		std::cout << "Вы сюда уже стреляли! Давайте еще раз...";
-		_getch();
-		e = 1;
+		return true;
 	}
 	else
 	{
+		human.countShots++;
 		if (computer.ships[digit][character] == 1)
 		{
 			human.hits[digit][character] = 1;
 			std::cout << "Промазали!)))";
-			_getch();
+			return false;
 		}
 		else if (computer.ships[digit][character] == 2)
 		{
 			human.hits[digit][character] = 2;
 			computer.ships[digit][character] = 3;
 			std::cout << "Попали!((( Ходите еще раз...";
-			e = 1;
-			_getch();
+			human.score++;
+			return true;
 		}
 	}
-	return e;
+	//return e;
 }
 
 bool BattleShips::turnComputer()
 {
+	
 	bool e = 0;
 	while (e == 0)
 	{
 		int digit = rand() % 10;
 		int character = rand() % 10;
-		if (computer.hits[digit][character] == 1) e = 0;
+		if (computer.hits[digit][character] == 1) return false;
 		else
 		{
+			computer.countShots++;
 			if (human.ships[digit][character] == 1)
 			{
 				computer.hits[digit][character] = 1;
 				human.ships[digit][character] = 3;
-				e = 1;
+				return true;
 			}
 			else if (human.ships[digit][character] == 2)
 			{
 				computer.hits[digit][character] = 1;
 				human.ships[digit][character] = 4;
-				continue;
+				computer.score++;
+				return false;
 			}
 		}
 	}
@@ -165,7 +169,12 @@ bool BattleShips::gameOver() {
 	else return true;
 	
 }
-
+void BattleShips::score() {
+	std::cout << std::endl;
+	std::cout << "______________________________СТАТИСТИКА_____________________________________________________________" << std::endl;
+	std::cout << "Ваше количество выстрелов: " << human.countShots << " из них попаданий: " << human.score << std::endl;
+	std::cout << "Противник выстрелил: " << computer.countShots << " из них попаданий: " << computer.score << std::endl;
+}
 void BattleShips::gameUpdate() {
 	setlocale(LC_CTYPE, "Russian");
 		srand(static_cast<unsigned int>(time(NULL)));
@@ -173,23 +182,37 @@ void BattleShips::gameUpdate() {
 		system("cls");
 		map_init();
 		Fild::showMas();
-		if (human.message == 1) //Message code 1 - an invalid value was entered
-		{ 
-			std::cout << "Вы ввели неверное значение!\n";
-		}
-		human.message = 0;
 		int character, digit;
-		user_input = human.input(character, digit,human.message);
-		if (user_input == 1)
-		{
-			human.message = 1;
-		}
-		e = turnHuman(character, digit);
-		if (e == 1) {
+		do {
+			do {
+				system("cls");
+				Fild::showMas();
+				if (human.message == 1) //Message code 1 - an invalid value was entered
+				{
+					std::cout << "Вы ввели неверное значение!\n";
+				}
+				human.message = 0;
+				user_input = human.input(character, digit, human.message);
+		
+				if (user_input == 1)
+				{
+					human.message = 1;
+				}
+			} while (user_input != 0);
+		 
+				e = turnHuman(character, digit);
+				system("cls");
+				Fild::showMas();
+		 } while (e);
 			e = turnComputer();
-		}
-		if (human.defeat_flag == 1) { "\n\n\n\n\n\n\t\t\t\Your loose!\n"; }
-		if (computer.defeat_flag == 1) { "\n\n\n\n\n\n\t\t\t\Win!\n"; }
+			system("cls");
+			Fild::showMas();
+			_getch();
 		human.message = BattleShips::checkEnd();
+		score();
 	_getch();
+}
+void BattleShips::Win() {
+	if (human.defeat_flag == 1) { "\n\n\n\n\n\n\t\t\t\Your loose!\n"; }
+	if (computer.defeat_flag == 1) { "\n\n\n\n\n\n\t\t\t\Win!\n"; }
 }

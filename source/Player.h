@@ -8,6 +8,8 @@ public:
 	bool defeat_flag;
 	int hits[10][10];
 	int ships[10][10];
+	int countShots;
+	int score;
 	void ships_init();	//Placing in the map array information about the player's ships
 	~Player();
 

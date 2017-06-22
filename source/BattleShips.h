@@ -12,6 +12,7 @@ public:
 	void gameUpdate();
 	void start();
 	void stop();
+	void Win();
 	~BattleShips();
 	
 private:
@@ -21,9 +22,9 @@ private:
 	void map_init();
 	int checkEnd();
 	void controlState();
+	void score();
 	bool turnHuman(int character, int digit);	// for human player
 	bool turnComputer();						//for computer player
-	void Draw();
 	machinstate m_State;
 	StepState m_StepState;
 };

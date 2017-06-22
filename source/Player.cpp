@@ -4,6 +4,8 @@
 
 Player::Player(){
 	Player::defeat_flag = 0;
+	Player::score = 0;
+	Player::countShots = 0;
 	Player::ships_init();
 }
 
