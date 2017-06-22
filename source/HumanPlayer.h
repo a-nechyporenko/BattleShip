@@ -6,11 +6,10 @@
 
 class HumanPlayer :public Player, public Fild {
 public:
-						
-private:
 	HumanPlayer();
-	int input(int&, int&);					//User input
 	~HumanPlayer();
+private:
+	int input(int&, int&);					//User input
 };
 
 #endif

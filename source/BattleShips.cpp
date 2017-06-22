@@ -97,11 +97,6 @@ int BattleShips::checkEnd(){
 	if (k2 == 0) { computer.defeat_flag = 1; return 2; }
 	return 0;
 }
-//destructor
-
-BattleShips::~BattleShips() {
-	BattleShips::stop();
-}
 
 void BattleShips::controlState() {
 	static int i = 0;		//count steps
@@ -118,4 +113,8 @@ void BattleShips::controlState() {
 
 		}
 	}
+}
+//destructor
+BattleShips::~BattleShips() {
+	BattleShips::stop();
 }

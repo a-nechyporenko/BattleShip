@@ -28,5 +28,6 @@ int HumanPlayer::input(int& character, int& digit)
 	if (digit == -1) { massage = 1; return massage; }
 	return massage;
 }
+
 HumanPlayer::~HumanPlayer(){
 }
