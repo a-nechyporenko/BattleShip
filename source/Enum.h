@@ -6,7 +6,7 @@
 #include <ctime>
 #include <stdlib.h>
 #include <clocale>
-enum machinstate { undefined, start, stop };
+enum MachinState { undefined, start, stop };
 enum StepState { Human, Computer };
-enum direction { horisontal, vertical };
+enum Direction { horisontal, vertical };
 #endif

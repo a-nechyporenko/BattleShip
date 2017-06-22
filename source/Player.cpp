@@ -4,12 +4,12 @@
 
 Player::Player(){
 	Player::defeat_flag = 0;
-	Player::score = 0;
+	Player::scoreCounter = 0;
 	Player::countShots = 0;
-	Player::ships_init();
+	Player::shipsInit();
 }
 
-void Player::ships_init() {
+void Player::shipsInit() {
 	for (int i = 0; i<10; i++)
 		for (int j = 0; j<10; j++)
 		{
@@ -25,7 +25,7 @@ void Player::ships_init() {
 void Player::set(int deck) {
 	int my = deck - 1;
 	bool coor, isset = 0;
-	direction dir;
+	Direction dir;
 	int x, y, r;
 	while (isset == 0)
 	{
@@ -46,7 +46,7 @@ void Player::set(int deck) {
 			if (ships[x][y + my] == 1)
 			{
 				if ((y + my) >= 10) break;
-				e = place_ship(x, y, dir, deck); // check near positions
+				e = checkFreePlaceNearShip(x, y, dir, deck); // check near positions
 				if (e == 0)
 				{
 					for (int i = 0; i<deck; i++)
@@ -59,7 +59,7 @@ void Player::set(int deck) {
 		case vertical:
 			if (ships[x + my][y] == 1)
 			{
-				e = place_ship(x, y, dir, deck);
+				e = checkFreePlaceNearShip(x, y, dir, deck);
 				if (e == 0)
 				{
 					for (int i = 0; i<deck; i++)
@@ -72,7 +72,7 @@ void Player::set(int deck) {
 	}
 }
 
-bool Player::place_ship(int x, int y, direction dir, int deck)
+bool Player::checkFreePlaceNearShip(int x, int y, Direction dir, int deck)
 {
 	bool e = 0;
 	switch (dir)

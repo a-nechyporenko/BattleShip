@@ -12,14 +12,14 @@ public:
 	void in_mass_net();
 	~Fild();
 protected:
-	const int s = 22, c = 61;
+	const int LINES = 22, COLUMN = 61;
 	char map[22][61];
 private:
-	void show(int s, int c);
-	void str_net(int k, int y);
-	void num_str(int j, int k, int y);
-	void kanji_str(int x, int y);
-	void space_input(int x, int y, int n);
+	void show(int LINES, int COLUMN);
+	void strNet(int k, int y);
+	void numStr(int j, int k, int y);
+	void kanjiStr(int x, int y);
+	void spaceInput(int x, int y, int n);
 };
 
 #endif

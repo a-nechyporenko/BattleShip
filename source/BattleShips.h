@@ -19,13 +19,13 @@ private:
 	ComputerPlayer computer;
 	HumanPlayer human;
 	bool e;
-	void map_init();
+	void mapInit();								// placing in the map array information about the player's ships
 	int checkEnd();
 	void controlState();
-	void score();
+	void scoreCounter();
 	bool turnHuman(int character, int digit);	// for human player
 	bool turnComputer();						//for computer player
-	machinstate m_State;
-	StepState m_StepState;
+	MachinState mState;
+	StepState mStepState;
 };
 #endif

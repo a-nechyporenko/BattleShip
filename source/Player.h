@@ -9,13 +9,13 @@ public:
 	int hits[10][10];
 	int ships[10][10];
 	int countShots;
-	int score;
-	void ships_init();	//Placing in the map array information about the player's ships
+	int scoreCounter;
+	void shipsInit();	//Placing in the map array information about the player'LINES ships
 	~Player();
 
 private:
-	void set(int deck); // размещает на поле один корабль / deck - количество палуб
-	bool place_ship(int x, int y, direction dir, int deck); // проверяет, касается ли размещаемый корабль других
+	void set(int deck); // places one ship on the field / deck - number of decks
+	bool checkFreePlaceNearShip(int x, int y, Direction dir, int deck); // checks if the ship being placed is related to other
 };
 
 #endif

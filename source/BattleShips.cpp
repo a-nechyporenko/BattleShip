@@ -6,22 +6,22 @@
 
 //pause
 void BattleShips::start(){
-	if (m_State != machinstate::start) {
-		m_State = machinstate::start;
-		std::thread thr(&BattleShips::m_StepState, this);
+	if (mState != MachinState::start) {
+		mState = MachinState::start;
+		std::thread thr(&BattleShips::mStepState, this);
 		thr.detach();
 	}
 }
 
 void BattleShips::stop(){
-	m_State = machinstate::stop;
+	mState = MachinState::stop;
 }
 
 //constructor 
 
 BattleShips::BattleShips() 
-					: m_StepState(StepState::Human)
-					, m_State(machinstate::undefined)
+					: mStepState(StepState::Human)
+					, mState(MachinState::undefined)
 {
 	human.message = 0;
 	e = 0;
@@ -52,7 +52,7 @@ bool BattleShips::turnHuman(int character, int digit)
 			human.hits[digit][character] = 2;
 			computer.ships[digit][character] = 3;
 			std::cout << "Попали!((( Ходите еще раз...";
-			human.score++;
+			human.scoreCounter++;
 			return true;
 		}
 	}
@@ -61,9 +61,8 @@ bool BattleShips::turnHuman(int character, int digit)
 
 bool BattleShips::turnComputer()
 {
-	
-	bool e = 0;
-	while (e == 0)
+	bool e = false;
+	while (e == false)
 	{
 		int digit = rand() % 10;
 		int character = rand() % 10;
@@ -81,12 +80,12 @@ bool BattleShips::turnComputer()
 			{
 				computer.hits[digit][character] = 1;
 				human.ships[digit][character] = 4;
-				computer.score++;
+				computer.scoreCounter++;
 				return false;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 int BattleShips::checkEnd(){
@@ -106,15 +105,15 @@ int BattleShips::checkEnd(){
 
 void BattleShips::controlState() {
 	static int i = 0;		//count steps
-	while (m_State == machinstate::start) {
-		switch (m_StepState) {				//change color
+	while (mState == MachinState::start) {
+		switch (mStepState) {				//change color
 		case StepState::Human:
 
-			m_StepState = StepState::Computer;
+			mStepState = StepState::Computer;
 			break;
 		case StepState::Computer:
 
-			m_StepState = StepState::Human;
+			mStepState = StepState::Human;
 			break;
 
 		}
@@ -124,7 +123,7 @@ void BattleShips::controlState() {
 BattleShips::~BattleShips() {
 	BattleShips::stop();
 }
-void BattleShips::map_init()
+void BattleShips::mapInit()
 {
 	for (int i = 0; i<10; i++)
 		for (int j = 0; j<10; j++)
@@ -163,24 +162,22 @@ void BattleShips::map_init()
 bool BattleShips::gameOver() {
 	if (checkEnd() == 2) {
 		system("cls");
-
 		return false; 
 	}
 	else return true;
-	
 }
-void BattleShips::score() {
+void BattleShips::scoreCounter() {
 	std::cout << std::endl;
 	std::cout << "______________________________СТАТИСТИКА_____________________________________________________________" << std::endl;
-	std::cout << "Ваше количество выстрелов: " << human.countShots << " из них попаданий: " << human.score << std::endl;
-	std::cout << "Противник выстрелил: " << computer.countShots << " из них попаданий: " << computer.score << std::endl;
+	std::cout << "Ваше количество выстрелов: " << human.countShots << " из них попаданий: " << human.scoreCounter << std::endl;
+	std::cout << "Противник выстрелил: " << computer.countShots << " из них попаданий: " << computer.scoreCounter << std::endl;
 }
 void BattleShips::gameUpdate() {
 	setlocale(LC_CTYPE, "Russian");
 		srand(static_cast<unsigned int>(time(NULL)));
 		int user_input = 0;
 		system("cls");
-		map_init();
+		mapInit();
 		Fild::showMas();
 		int character, digit;
 		do {
@@ -209,7 +206,7 @@ void BattleShips::gameUpdate() {
 			Fild::showMas();
 			_getch();
 		human.message = BattleShips::checkEnd();
-		score();
+		scoreCounter();
 	_getch();
 }
 void BattleShips::Win() {
