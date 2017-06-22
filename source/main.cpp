@@ -6,8 +6,6 @@
 
 int main()
 {
-	Fild f;
-	f.showMas();
 	/*BattleShips bs;
 
 	while (!bs.gameOver()) {

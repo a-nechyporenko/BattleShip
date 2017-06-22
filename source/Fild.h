@@ -11,9 +11,10 @@ public:
 	void showMas();
 	void in_mass_net();
 	~Fild();
-private:
+protected:
 	const int s = 22, c = 61;
 	char map[22][61];
+private:
 	void show(int s, int c);
 	void str_net(int k, int y);
 	void num_str(int j, int k, int y);

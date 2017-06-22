@@ -1,11 +1,12 @@
 #pragma once
 #ifndef _COMPUTERPLAYER_H
 #define _COMPUTERPLAYER_H
-class ComputerPlayer
+#include "Player.h"
+#include "HumanPlayer.h"
+class ComputerPlayer :public Player
 {
 public:
 	ComputerPlayer();
-	bool turn();
 	~ComputerPlayer();
 };
 

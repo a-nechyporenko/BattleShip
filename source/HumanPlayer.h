@@ -2,16 +2,14 @@
 #ifndef _HUMANPLAYER_H
 #define _HUMANPLAYER_H
 #include"Player.h"
+#include"Fild.h"
 
-class HumanPlayer :public Player {
+class HumanPlayer :public Player, public Fild {
 public:
-					
-	void show();
-	int input(int&, int&);					//User input
-	bool turn(int character, int digit);	// Player progress
-	
+						
 private:
 	HumanPlayer();
+	int input(int&, int&);					//User input
 	~HumanPlayer();
 };
 
