@@ -8,6 +8,8 @@
 class BattleShips:public Fild {
 public:
 	BattleShips();
+	bool gameOver();
+	void gameUpdate();
 	void start();
 	void stop();
 	~BattleShips();
@@ -15,8 +17,8 @@ public:
 private:
 	ComputerPlayer computer;
 	HumanPlayer human;
-	bool gameOver();
-	void gameUpdate();
+	bool e;
+	void map_init();
 	int checkEnd();
 	void controlState();
 	bool turnHuman(int character, int digit);	// for human player

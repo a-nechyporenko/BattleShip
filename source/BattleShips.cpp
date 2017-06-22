@@ -4,7 +4,7 @@
 #include"Enum.h"
 #include<thread>
 
-
+//pause
 void BattleShips::start(){
 	if (m_State != machinstate::start) {
 		m_State = machinstate::start;
@@ -23,6 +23,8 @@ BattleShips::BattleShips()
 					: m_StepState(StepState::Human)
 					, m_State(machinstate::undefined)
 {
+	human.message = 0;
+	e = 0;
 	BattleShips::start();
 }
 
@@ -117,4 +119,77 @@ void BattleShips::controlState() {
 //destructor
 BattleShips::~BattleShips() {
 	BattleShips::stop();
+}
+void BattleShips::map_init()
+{
+	for (int i = 0; i<10; i++)
+		for (int j = 0; j<10; j++)
+		{
+			if (human.ships[i][j] == 1)
+			{
+				map[2 + 2 * i][5 + 2 * j] = ' ';
+			}
+			else if (human.ships[i][j] == 2)
+			{
+				map[2 + 2 * i][5 + 2 * j] = 2;
+			}
+			else if (human.ships[i][j] == 3)
+			{
+				map[2 + 2 * i][5 + 2 * j] = '.';
+			}
+			else if (human.ships[i][j] == 4)
+			{
+				map[2 + 2 * i][5 + 2 * j] = 'X';
+			}
+			////////////////////////
+			if (human.hits[i][j] == 0)
+			{
+				map[2 + 2 * i][41 + 2 * j] = ' ';
+			}
+			else if (human.hits[i][j] == 1)
+			{
+				map[2 + 2 * i][41 + 2 * j] = '.';
+			}
+			else if (human.hits[i][j] == 2)
+			{
+				map[2 + 2 * i][41 + 2 * j] = 'X';
+			}
+		}
+}
+bool BattleShips::gameOver() {
+	if (checkEnd() == 2) {
+		system("cls");
+
+		return false; 
+	}
+	else return true;
+	
+}
+
+void BattleShips::gameUpdate() {
+	setlocale(LC_CTYPE, "Russian");
+		srand(static_cast<unsigned int>(time(NULL)));
+		int user_input = 0;
+		system("cls");
+		map_init();
+		Fild::showMas();
+		if (human.message == 1) //Message code 1 - an invalid value was entered
+		{ 
+			std::cout << "Вы ввели неверное значение!\n";
+		}
+		human.message = 0;
+		int character, digit;
+		user_input = human.input(character, digit,human.message);
+		if (user_input == 1)
+		{
+			human.message = 1;
+		}
+		e = turnHuman(character, digit);
+		if (e == 1) {
+			e = turnComputer();
+		}
+		if (human.defeat_flag == 1) { "\n\n\n\n\n\n\t\t\t\Your loose!\n"; }
+		if (computer.defeat_flag == 1) { "\n\n\n\n\n\n\t\t\t\Win!\n"; }
+		human.message = BattleShips::checkEnd();
+	_getch();
 }
