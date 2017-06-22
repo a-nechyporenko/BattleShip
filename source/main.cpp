@@ -6,19 +6,12 @@
 
 int main()
 {
-	/*BattleShips bs;
+	setlocale(LC_CTYPE, "Russian");
+	BattleShips bs;
 
-	while (!bs.gameOver()) {
+	while (bs.gameOver()) {
 		bs.gameUpdate();
-	}*/
+	}
 	system("pause");
 	return 0;
 }
-
-//complete in soon...
-
-//class Fild{
-//};
-//
-//class Menu{
-//};
