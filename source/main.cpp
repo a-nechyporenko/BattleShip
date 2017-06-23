@@ -9,7 +9,7 @@ int main()
 	{
 		bs.gameUpdate();
 	}
-	bs.Win();
+	bs.win();
 	system("pause");
 	return 0;
 }

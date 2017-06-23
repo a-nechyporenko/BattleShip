@@ -12,13 +12,13 @@ public:
 	void gameUpdate();
 	void start();
 	void stop();
-	void Win();
+	void win();
 	~BattleShips();
 	
 private:
 	ComputerPlayer computer;
 	HumanPlayer human;
-	bool e;
+	bool boolValue;
 	void mapInit();								// placing in the map array information about the player's ships
 	int checkEnd();
 	void controlState();

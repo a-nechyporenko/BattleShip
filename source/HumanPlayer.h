@@ -11,9 +11,7 @@ public:
 	char lete[10] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
 	int message;	// The variable stores the message codes (0 - everything is fine, 1 - the user pressed the wrong key, 2 - the game is over)
 	int input(int&, int&, int massage);					//User input
-	~HumanPlayer();
-private:
-	
+	~HumanPlayer();	
 };
 
 #endif

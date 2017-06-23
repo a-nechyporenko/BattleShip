@@ -5,7 +5,7 @@
 class Player {
 public:
 	Player();
-	bool defeat_flag;
+	bool defeatFlag;
 	int hits[10][10];
 	int ships[10][10];
 	int countShots;

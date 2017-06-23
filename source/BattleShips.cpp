@@ -24,7 +24,7 @@ BattleShips::BattleShips()
 					, mState(MachinState::undefined)
 {
 	human.message = 0;
-	e = 0;
+	boolValue = 0;
 	BattleShips::start();
 }
 
@@ -32,7 +32,7 @@ bool BattleShips::turnHuman(int character, int digit)
 {
 	setlocale(LC_CTYPE, "Russian");
 	
-	//bool e = false;
+	//bool boolValue = false;
 	if ((human.hits[digit][character] == 1) || (human.hits[digit][character] == 2))
 	{
 		std::cout << "Вы сюда уже стреляли! Давайте еще раз...";
@@ -56,13 +56,13 @@ bool BattleShips::turnHuman(int character, int digit)
 			return true;
 		}
 	}
-	//return e;
+	//return boolValue;
 }
 
 bool BattleShips::turnComputer()
 {
-	bool e = false;
-	while (e == false)
+	bool boolValue = false;
+	while (boolValue == false)
 	{
 		int digit = rand() % 10;
 		int character = rand() % 10;
@@ -98,8 +98,8 @@ int BattleShips::checkEnd(){
 			if (computer.ships[i][j] == 2) { k2 = 1; }
 		}
 	}
-	if (k1 == 0) { human.defeat_flag = 1; return 2; }
-	if (k2 == 0) { computer.defeat_flag = 1; return 2; }
+	if (k1 == 0) { human.defeatFlag = 1; return 2; }
+	if (k2 == 0) { computer.defeatFlag = 1; return 2; }
 	return 0;
 }
 
@@ -197,11 +197,11 @@ void BattleShips::gameUpdate() {
 				}
 			} while (user_input != 0);
 		 
-				e = turnHuman(character, digit);
+				boolValue = turnHuman(character, digit);
 				system("cls");
 				Fild::showMas();
-		 } while (e);
-			e = turnComputer();
+		 } while (boolValue);
+			boolValue = turnComputer();
 			system("cls");
 			Fild::showMas();
 			_getch();
@@ -209,7 +209,7 @@ void BattleShips::gameUpdate() {
 		scoreCounter();
 	_getch();
 }
-void BattleShips::Win() {
-	if (human.defeat_flag == 1) { "\n\n\n\n\n\n\t\t\t\Your loose!\n"; }
-	if (computer.defeat_flag == 1) { "\n\n\n\n\n\n\t\t\t\Win!\n"; }
+void BattleShips::win() {
+	if (human.defeatFlag == 1) { "\n\n\n\n\n\n\t\t\t\Your loose!\n"; }
+	if (computer.defeatFlag == 1) { "\n\n\n\n\n\n\t\t\t\Win!\n"; }
 }

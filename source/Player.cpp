@@ -3,7 +3,7 @@
 
 
 Player::Player(){
-	Player::defeat_flag = 0;
+	Player::defeatFlag = 0;
 	Player::scoreCounter = 0;
 	Player::countShots = 0;
 	Player::shipsInit();
@@ -39,15 +39,15 @@ void Player::set(int deck) {
 			y = rand() % 10;
 			if (ships[x][y] == 1) coor = 1;
 		}
-		int e = 0;
+		int boolValue = 0;
 		switch (dir)
 		{
 		case horisontal:
 			if (ships[x][y + my] == 1)
 			{
 				if ((y + my) >= 10) break;
-				e = checkFreePlaceNearShip(x, y, dir, deck); // check near positions
-				if (e == 0)
+				boolValue = checkFreePlaceNearShip(x, y, dir, deck); // check near positions
+				if (boolValue == 0)
 				{
 					for (int i = 0; i<deck; i++)
 						ships[x][y + i] = 2;
@@ -59,8 +59,8 @@ void Player::set(int deck) {
 		case vertical:
 			if (ships[x + my][y] == 1)
 			{
-				e = checkFreePlaceNearShip(x, y, dir, deck);
-				if (e == 0)
+				boolValue = checkFreePlaceNearShip(x, y, dir, deck);
+				if (boolValue == 0)
 				{
 					for (int i = 0; i<deck; i++)
 						ships[x + i][y] = 2;
@@ -74,7 +74,7 @@ void Player::set(int deck) {
 
 bool Player::checkFreePlaceNearShip(int x, int y, Direction dir, int deck)
 {
-	bool e = 0;
+	bool boolValue = 0;
 	switch (dir)
 	{
 	case horisontal:
@@ -82,78 +82,78 @@ bool Player::checkFreePlaceNearShip(int x, int y, Direction dir, int deck)
 			if (x == 0)
 			{
 				for (int i = 0; i <= deck; i++)
-					if (ships[x + 1][y + i] != 1) { e = 1; break; }
-				if (ships[x][y + deck] != 1) { e = 1; }
+					if (ships[x + 1][y + i] != 1) { boolValue = 1; break; }
+				if (ships[x][y + deck] != 1) { boolValue = 1; }
 				break;
 			}
 			else if (x == 9)
 			{
 				for (int i = 0; i <= deck; i++)
-					if (ships[x - 1][y + i] != 1) { e = 1; break; }
-				if (ships[x][y + deck] != 1) { e = 1; }
+					if (ships[x - 1][y + i] != 1) { boolValue = 1; break; }
+				if (ships[x][y + deck] != 1) { boolValue = 1; }
 				break;
 			}
 			else
 			{
 				for (int i = 0; i <= deck; i++)
 				{
-					if (ships[x + 1][y + i] != 1) { e = 1; break; }
-					if (ships[x - 1][y + i] != 1) { e = 1; break; }
+					if (ships[x + 1][y + i] != 1) { boolValue = 1; break; }
+					if (ships[x - 1][y + i] != 1) { boolValue = 1; break; }
 				}
-				if (ships[x][y + deck] != 1) { e = 1; }
+				if (ships[x][y + deck] != 1) { boolValue = 1; }
 				break;
 			}
 		else if (y == (10 - deck))
 			if (x == 0)
 			{
 				for (int i = -1; i<deck; i++)
-					if (ships[x + 1][y + i] != 1) { e = 1; break; }
-				if (ships[x][y - 1] != 1) { e = 1; }
+					if (ships[x + 1][y + i] != 1) { boolValue = 1; break; }
+				if (ships[x][y - 1] != 1) { boolValue = 1; }
 				break;
 			}
 			else if (x == 9)
 			{
 				for (int i = -1; i<deck; i++)
-					if (ships[x - 1][y + i] != 1) { e = 1; break; }
-				if (ships[x][y - 1] != 1) { e = 1; }
+					if (ships[x - 1][y + i] != 1) { boolValue = 1; break; }
+				if (ships[x][y - 1] != 1) { boolValue = 1; }
 				break;
 			}
 			else
 			{
 				for (int i = -1; i<deck; i++)
 				{
-					if (ships[x + 1][y + i] != 1) { e = 1; break; }
-					if (ships[x - 1][y + i] != 1) { e = 1; break; }
+					if (ships[x + 1][y + i] != 1) { boolValue = 1; break; }
+					if (ships[x - 1][y + i] != 1) { boolValue = 1; break; }
 				}
-				if (ships[x][y - 1] != 1) { e = 1; }
+				if (ships[x][y - 1] != 1) { boolValue = 1; }
 				break;
 			}
 		else
 			if (x == 0)
 			{
 				for (int i = -1; i <= deck; i++)
-					if (ships[x + 1][y + i] != 1) { e = 1; break; }
-				if (ships[x][y - 1] != 1) { e = 1; break; }
-				if (ships[x][y + deck] != 1) { e = 1; }
+					if (ships[x + 1][y + i] != 1) { boolValue = 1; break; }
+				if (ships[x][y - 1] != 1) { boolValue = 1; break; }
+				if (ships[x][y + deck] != 1) { boolValue = 1; }
 				break;
 			}
 			else if (x == 9)
 			{
 				for (int i = -1; i <= deck; i++)
-					if (ships[x - 1][y + i] != 1) { e = 1; break; }
-				if (ships[x][y - 1] != 1) { e = 1; break; }
-				if (ships[x][y + deck] != 1) { e = 1; }
+					if (ships[x - 1][y + i] != 1) { boolValue = 1; break; }
+				if (ships[x][y - 1] != 1) { boolValue = 1; break; }
+				if (ships[x][y + deck] != 1) { boolValue = 1; }
 				break;
 			}
 			else
 			{
 				for (int i = -1; i <= deck; i++)
 				{
-					if (ships[x + 1][y + i] != 1) { e = 1; break; }
-					if (ships[x - 1][y + i] != 1) { e = 1; break; }
+					if (ships[x + 1][y + i] != 1) { boolValue = 1; break; }
+					if (ships[x - 1][y + i] != 1) { boolValue = 1; break; }
 				}
-				if (ships[x][y - 1] != 1) { e = 1; break; }
-				if (ships[x][y + deck] != 1) { e = 1; }
+				if (ships[x][y - 1] != 1) { boolValue = 1; break; }
+				if (ships[x][y + deck] != 1) { boolValue = 1; }
 				break;
 			}
 
@@ -162,83 +162,83 @@ bool Player::checkFreePlaceNearShip(int x, int y, Direction dir, int deck)
 			if (y == 0)
 			{
 				for (int i = 0; i <= deck; i++)
-					if (ships[x + i][y + 1] != 1) { e = 1; break; }
-				if (ships[x + deck][y] != 1) { e = 1; }
+					if (ships[x + i][y + 1] != 1) { boolValue = 1; break; }
+				if (ships[x + deck][y] != 1) { boolValue = 1; }
 				break;
 			}
 			else if (y == 9)
 			{
 				for (int i = 0; i <= deck; i++)
-					if (ships[x + i][y - 1] != 1) { e = 1; break; }
-				if (ships[x + deck][y] != 1) { e = 1; }
+					if (ships[x + i][y - 1] != 1) { boolValue = 1; break; }
+				if (ships[x + deck][y] != 1) { boolValue = 1; }
 				break;
 			}
 			else
 			{
 				for (int i = 0; i <= deck; i++)
 				{
-					if (ships[x + i][y + 1] != 1) { e = 1; break; }
-					if (ships[x + i][y - 1] != 1) { e = 1; break; }
+					if (ships[x + i][y + 1] != 1) { boolValue = 1; break; }
+					if (ships[x + i][y - 1] != 1) { boolValue = 1; break; }
 				}
-				if (ships[x + deck][y] != 1) { e = 1; }
+				if (ships[x + deck][y] != 1) { boolValue = 1; }
 				break;
 			}
 		else if (x == (10 - deck))
 			if (y == 0)
 			{
 				for (int i = -1; i<deck; i++)
-					if (ships[x + i][y + 1] != 1) { e = 1; break; }
-				if (ships[x - 1][y] != 1) { e = 1; }
+					if (ships[x + i][y + 1] != 1) { boolValue = 1; break; }
+				if (ships[x - 1][y] != 1) { boolValue = 1; }
 				break;
 			}
 			else if (y == 9)
 			{
 				for (int i = -1; i<deck; i++)
-					if (ships[x + i][y - 1] != 1) { e = 1; break; }
-				if (ships[x - 1][y] != 1) { e = 1; }
+					if (ships[x + i][y - 1] != 1) { boolValue = 1; break; }
+				if (ships[x - 1][y] != 1) { boolValue = 1; }
 				break;
 			}
 			else
 			{
 				for (int i = -1; i<deck; i++)
 				{
-					if (ships[x + i][y + 1] != 1) { e = 1; break; }
-					if (ships[x + i][y - 1] != 1) { e = 1; break; }
+					if (ships[x + i][y + 1] != 1) { boolValue = 1; break; }
+					if (ships[x + i][y - 1] != 1) { boolValue = 1; break; }
 				}
-				if (ships[x - 1][y] != 1) { e = 1; }
+				if (ships[x - 1][y] != 1) { boolValue = 1; }
 				break;
 			}
 		else
 			if (y == 0)
 			{
 				for (int i = -1; i <= deck; i++)
-					if (ships[x + i][y + 1] != 1) { e = 1; break; }
-				if (ships[x - 1][y] != 1) { e = 1; break; }
-				if (ships[x + deck][y] != 1) { e = 1; }
+					if (ships[x + i][y + 1] != 1) { boolValue = 1; break; }
+				if (ships[x - 1][y] != 1) { boolValue = 1; break; }
+				if (ships[x + deck][y] != 1) { boolValue = 1; }
 				break;
 			}
 			else if (y == 9)
 			{
 				for (int i = -1; i <= deck; i++)
-					if (ships[x + i][y - 1] != 1) { e = 1; break; }
-				if (ships[x - 1][y] != 1) { e = 1; break; }
-				if (ships[x + deck][y] != 1) { e = 1; }
+					if (ships[x + i][y - 1] != 1) { boolValue = 1; break; }
+				if (ships[x - 1][y] != 1) { boolValue = 1; break; }
+				if (ships[x + deck][y] != 1) { boolValue = 1; }
 				break;
 			}
 			else
 			{
 				for (int i = -1; i <= deck; i++)
 				{
-					if (ships[x + i][y + 1] != 1) { e = 1; break; }
-					if (ships[x + i][y - 1] != 1) { e = 1; break; }
+					if (ships[x + i][y + 1] != 1) { boolValue = 1; break; }
+					if (ships[x + i][y - 1] != 1) { boolValue = 1; break; }
 				}
-				if (ships[x - 1][y] != 1) { e = 1; break; }
-				if (ships[x + deck][y] != 1) { e = 1; }
+				if (ships[x - 1][y] != 1) { boolValue = 1; break; }
+				if (ships[x + deck][y] != 1) { boolValue = 1; }
 				break;
 			}
 		/////////////////////////////////////////////
 	}
-	return e;
+	return boolValue;
 }
 
 Player::~Player(){
