@@ -197,16 +197,16 @@ void BattleShips::gameUpdate() {
 			} while (user_input != 0);
 		 
 				boolValue = turnHuman(character, digit);
-				system("cls");
-				Fild::showMas();
+				//system("cls");
+				//Fild::showMas();
 		 } while (boolValue);
 			boolValue = turnComputer();
 			system("cls");
+			mapInit();
 			Fild::showMas();
+			scoreCounter();
 			_getch();
 		human.message = BattleShips::checkEnd();
-		scoreCounter();
-	_getch();
 }
 void BattleShips::win() {
 	if (human.defeatFlag == 1) { "\n\n\n\n\n\n\t\t\t\Your loose!\n"; }
