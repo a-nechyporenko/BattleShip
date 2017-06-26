@@ -35,7 +35,7 @@ bool BattleShips::turnHuman(int character, int digit)
 	//bool boolValue = false;
 	if ((human.hits[digit][character] == 1) || (human.hits[digit][character] == 2))
 	{
-		std::cout << "Вы сюда уже стреляли! Давайте еще раз...";
+		std::cout << "You already shot here! let's do it again...";
 		return true;
 	}
 	else
@@ -44,14 +44,14 @@ bool BattleShips::turnHuman(int character, int digit)
 		if (computer.ships[digit][character] == 1)
 		{
 			human.hits[digit][character] = 1;
-			std::cout << "Промазали!)))";
+			std::cout << "Missed!";
 			return false;
 		}
 		else if (computer.ships[digit][character] == 2)
 		{
 			human.hits[digit][character] = 2;
 			computer.ships[digit][character] = 3;
-			std::cout << "Попали!((( Ходите еще раз...";
+			std::cout << "Have fallen! Walk again...";
 			human.scoreCounter++;
 			return true;
 		}
@@ -106,7 +106,7 @@ int BattleShips::checkEnd(){
 void BattleShips::controlState() {
 	static int i = 0;		//count steps
 	while (mState == MachinState::start) {
-		switch (mStepState) {				//change color
+		switch (mStepState) {				
 		case StepState::Human:
 
 			mStepState = StepState::Computer;
@@ -168,12 +168,11 @@ bool BattleShips::gameOver() {
 }
 void BattleShips::scoreCounter() {
 	std::cout << std::endl;
-	std::cout << "______________________________СТАТИСТИКА_____________________________________________________________" << std::endl;
-	std::cout << "Ваше количество выстрелов: " << human.countShots << " из них попаданий: " << human.scoreCounter << std::endl;
-	std::cout << "Противник выстрелил: " << computer.countShots << " из них попаданий: " << computer.scoreCounter << std::endl;
+	std::cout << "______________________________STATISTICS_____________________________________________________________" << std::endl;
+	std::cout << "Your number of shots: " << human.countShots << " of them hit: " << human.scoreCounter << std::endl;
+	std::cout << "The enemy shot: " << computer.countShots << " of them hit: " << computer.scoreCounter << std::endl;
 }
 void BattleShips::gameUpdate() {
-	setlocale(LC_CTYPE, "Russian");
 		srand(static_cast<unsigned int>(time(NULL)));
 		int user_input = 0;
 		system("cls");
@@ -186,7 +185,7 @@ void BattleShips::gameUpdate() {
 				Fild::showMas();
 				if (human.message == 1) //Message code 1 - an invalid value was entered
 				{
-					std::cout << "Вы ввели неверное значение!\n";
+					std::cout << "You entered an invalid value!\n";
 				}
 				human.message = 0;
 				user_input = human.input(character, digit, human.message);

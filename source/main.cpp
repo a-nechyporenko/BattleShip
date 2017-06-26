@@ -3,7 +3,6 @@
 
 int main()
 {
-	setlocale(LC_CTYPE, "Russian");
 	BattleShips bs;
 	while (bs.gameOver())
 	{

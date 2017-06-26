@@ -10,8 +10,8 @@ int HumanPlayer::input(int& character, int& digit, int massage)
 {
 	character = -1, digit = -1;
 	char ch, d;
-	std::cout << "—трел€йте!\n";
-	std::cout << "¬ведите английскую строчную букву от A до J:";
+	std::cout << "Shoot!\n";
+	std::cout << "Enter an English lowercase letter from A to J:";
 	std::cin.clear();
 	std::cin>>ch;
 	for (int i = 0; i<10; i++)
@@ -19,7 +19,7 @@ int HumanPlayer::input(int& character, int& digit, int massage)
 		if (ch == lete[i]) { character = i; }
 	}
 	if (character == -1) { massage = 1; return massage; }
-	std::cout << "¬ведите цифру от 0 до 9:";
+	std::cout << "Enter a number from 0 to 9:";
 	std::cin.clear();
 	std::cin >> d;
 	for (int i = 0; i<10; i++)
